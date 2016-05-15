@@ -32,8 +32,8 @@ class MTG extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => this.handleReset()}>
-            <Text style={styles.button}>reset</Text>
+          <TouchableOpacity style={styles.touchButton} onPress={() => this.handleReset()}>
+            <Text style={styles.buttonText}>reset</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.button}>{this.state.numberPlayers}</Text>
@@ -117,20 +117,21 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 15,
     // left: 20,
-    top: 41,
+    // top: 41,
   },
   touchButton: {
     borderColor: '#34B8F1',
     borderWidth: 3,
     borderRadius: 5,
-    color: '#34B8F1',
+    // color: '#34B8F1',
     padding: 15,
     margin: 15,
     // left: 20,
-    top: 41,
+    // top: 41,
   },
   buttonText: {
     color: '#34B8F1',
+    textAlign: 'center',
     fontSize: 25,
   }
 });
