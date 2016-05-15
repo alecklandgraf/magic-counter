@@ -138,8 +138,8 @@ class MTGLayout extends Component {
 
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.touchButton} onPress={() => this.props.reset()}>
-          <Text style={styles.buttonText}>reset</Text>
+        <TouchableOpacity style={styles.touchButtonRed} onPress={() => this.props.reset()}>
+          <Text style={styles.buttonTextRed}>reset</Text>
         </TouchableOpacity>
         <View>
           {players}
@@ -238,6 +238,13 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 15,
   },
+  touchButtonRed: {
+    borderColor: '#A94442',
+    borderWidth: 3,
+    borderRadius: 5,
+    padding: 15,
+    margin: 15,
+  },
   player: {
     borderColor: '#34B8F1',
     borderWidth: 3,
@@ -249,6 +256,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#34B8F1',
+    textAlign: 'center',
+    fontSize: 25,
+  },
+  buttonTextRed: {
+    color: '#A94442',
     textAlign: 'center',
     fontSize: 25,
   },
