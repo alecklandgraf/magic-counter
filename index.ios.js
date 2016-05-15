@@ -89,30 +89,44 @@ class MTGLayout extends Component {
   }
 
   render () {
+    let players = this.playerLayout();
+
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.touchButton} onPress={() => this.props.reset()}>
           <Text style={styles.buttonText}>reset</Text>
         </TouchableOpacity>
         <View>
-          <Text style={styles.button}>{this.props.numberPlayers}</Text>
+          {players}
         </View>
       </View>
     )
   }
+
+  playerLayout() {
+    let players = [];
+    for (var i = 1; i < this.props.numberPlayers + 1; i++) {
+      players.push({
+        number: i,
+        health: this.props.defaultHealth,
+      });
+    }
+    return players.map((p) => {
+      return <Text style={styles.button} key={p.number}>Player {p.number}: {p.health}</Text>;
+    });
+  }
 }
-MTGSetup.propTypes = {
+MTGLayout.propTypes = {
   numberPlayers: React.PropTypes.number,
   reset: React.PropTypes.func,
+  defaultHealth: React.PropTypes.number,
 };
+MTGLayout.defaultProps = { defaultHealth: 40 };
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#000',
   },
   welcome: {
     fontSize: 30,
@@ -133,22 +147,16 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 5,
     textAlign: 'center',
-    // backgroundColor: '#34B8F1',
     color: '#34B8F1',
     padding: 15,
     margin: 15,
-    // left: 20,
-    // top: 41,
   },
   touchButton: {
     borderColor: '#34B8F1',
     borderWidth: 3,
     borderRadius: 5,
-    // color: '#34B8F1',
     padding: 15,
     margin: 15,
-    // left: 20,
-    // top: 41,
   },
   buttonText: {
     color: '#34B8F1',
