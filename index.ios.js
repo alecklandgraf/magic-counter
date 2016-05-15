@@ -30,16 +30,7 @@ class MTG extends Component {
     if (showInitialState) {
       return <MTGSetup onSetNumberPlayers={this.handleSetNumberPlayers} />;
     } else {
-      return (
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.touchButton} onPress={() => this.handleReset()}>
-            <Text style={styles.buttonText}>reset</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.button}>{this.state.numberPlayers}</Text>
-          </TouchableOpacity>
-        </View>
-      );
+      return <MTGLayout numberPlayers={this.state.numberPlayers} reset={() => this.handleReset()}/>;
     }
   }
 
@@ -85,6 +76,36 @@ class MTGSetup extends Component {
   }
 }
 MTGSetup.propTypes = {onSetNumberPlayers: React.PropTypes.func};
+
+/**
+ * props: {
+   numberPlayers: number - the number of players [2-4]
+   reset: func - callback to reset the game
+  }
+ */
+class MTGLayout extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.touchButton} onPress={() => this.props.reset()}>
+          <Text style={styles.buttonText}>reset</Text>
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.button}>{this.props.numberPlayers}</Text>
+        </View>
+      </View>
+    )
+  }
+}
+MTGSetup.propTypes = {
+  numberPlayers: React.PropTypes.number,
+  reset: React.PropTypes.func,
+};
+
 
 const styles = StyleSheet.create({
   container: {
