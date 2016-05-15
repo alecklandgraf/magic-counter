@@ -120,6 +120,17 @@ MTGSetup.propTypes = {
 class MTGLayout extends Component {
   constructor(props) {
     super(props);
+
+    let players = {};
+    for (var i = 1; i < this.props.numberPlayers + 1; i++) {
+      players[i] = this.props.defaultHealth;
+    }
+    this.state = {
+      players: players
+    };
+
+    this.addHealth = this.addHealth.bind(this);
+    this.subHealth = this.subHealth.bind(this);
   }
 
   render () {
@@ -139,14 +150,37 @@ class MTGLayout extends Component {
 
   playerLayout() {
     let players = [];
-    for (var i = 1; i < this.props.numberPlayers + 1; i++) {
+    for (var playerNumber in this.state.players) {
       players.push({
-        number: i,
-        health: this.props.defaultHealth,
+        number: playerNumber,
+        health: this.state.players[playerNumber],
       });
     }
     return players.map((p) => {
-      return <Text style={styles.button} key={p.number}>Player {p.number}: {p.health}</Text>;
+      return (
+        <View key={p.number}>
+          <TouchableOpacity onPress={() => this.subHealth(p.number)}>
+            <Text >-</Text>
+          </TouchableOpacity>
+          <Text style={styles.button}>Player {p.number}: {p.health}</Text>
+          <TouchableOpacity onPress={() => this.addHealth(p.number)}>
+            <Text >+</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    });
+  }
+
+  addHealth(playerNumber) {
+    this.setState((previousState, currentProps) => {
+      previousState.players[playerNumber] += 1;
+      return previousState;
+    });
+  }
+  subHealth(playerNumber) {
+    this.setState((previousState, currentProps) => {
+      previousState.players[playerNumber] -= 1;
+      return previousState;
     });
   }
 }
