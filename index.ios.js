@@ -158,13 +158,13 @@ class MTGLayout extends Component {
     }
     return players.map((p) => {
       return (
-        <View key={p.number}>
+        <View key={p.number} style={styles.touchButton}>
           <TouchableOpacity onPress={() => this.subHealth(p.number)}>
-            <Text >-</Text>
+            <Text style={styles.buttonText}>-</Text>
           </TouchableOpacity>
-          <Text style={styles.button}>Player {p.number}: {p.health}</Text>
+          <Text style={styles.buttonText}>Player {p.number}: {p.health}</Text>
           <TouchableOpacity onPress={() => this.addHealth(p.number)}>
-            <Text >+</Text>
+            <Text style={styles.buttonText}>+</Text>
           </TouchableOpacity>
         </View>
       );
