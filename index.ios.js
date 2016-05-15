@@ -118,6 +118,20 @@ const styles = StyleSheet.create({
     margin: 15,
     // left: 20,
     top: 41,
+  },
+  touchButton: {
+    borderColor: '#34B8F1',
+    borderWidth: 3,
+    borderRadius: 5,
+    color: '#34B8F1',
+    padding: 15,
+    margin: 15,
+    // left: 20,
+    top: 41,
+  },
+  buttonText: {
+    color: '#34B8F1',
+    fontSize: 25,
   }
 });
 
