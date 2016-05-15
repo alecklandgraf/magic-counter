@@ -21,53 +21,70 @@ class MTG extends Component {
       numberPlayers: 2,
       showInitialState: true,
     };
-  }
-  handleSetNumberPlayers(numberPlayers) {
-    this.setState({
-      numberPlayers: numberPlayers,
-      showInitialState: false,
-    });
+
+    // set this for callbacks
+    this.handleSetNumberPlayers = this.handleSetNumberPlayers.bind(this);
   }
   render() {
     let {showInitialState} = this.state;
     if (showInitialState) {
       return <MTGSetup onSetNumberPlayers={this.handleSetNumberPlayers} />;
+    } else {
+      return (
+        <View style={styles.container}>
+          <TouchableOpacity onPress={() => this.handleReset()}>
+            <Text style={styles.button}>reset</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.button}>{this.state.numberPlayers}</Text>
+          </TouchableOpacity>
+        </View>
+      );
     }
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity>
-          <Text style={styles.button}>play</Text>
-        </TouchableOpacity>
-      </View>
-    );
+  }
+
+  handleReset() {
+    this.setState({showInitialState: true});
+  }
+
+  handleSetNumberPlayers(numberPlayers) {
+    console.log(numberPlayers)
+    this.setState({
+      numberPlayers: numberPlayers,
+      showInitialState: false,
+    });
   }
 }
 
 
+/**
+ * props: {
+   onSetNumberPlayers: func - callback
+  }
+ */
 class MTGSetup extends Component {
   constructor(props) {
     super(props);
   }
-  handleClick(e) {
-    console.log(e);
-  }
+
   render () {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>How many players?</Text>
-        <TouchableOpacity onPress={() => this.handleClick(2)}>
+        <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(2)}>
           <Text style={styles.button}>two</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.handleClick(3)}>
+        <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(3)}>
           <Text style={styles.button}>three</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.handleClick(4)}>
+        <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(4)}>
           <Text style={styles.button}>four</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
+MTGSetup.propTypes = {onSetNumberPlayers: React.PropTypes.func};
 
 const styles = StyleSheet.create({
   container: {
@@ -87,6 +104,8 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  // todo see if I can move the button styles to the TouchableOpacity since the
+  // the Text button bleeds into the TouchableOpacity below it.
   button: {
     fontSize: 25,
     borderColor: '#34B8F1',
@@ -102,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('MTG', () => MTGSetup);
+AppRegistry.registerComponent('MTG', () => MTG);
