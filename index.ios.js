@@ -20,17 +20,27 @@ class MTG extends Component {
     this.state = {
       numberPlayers: 2,
       showInitialState: true,
+      defaultHealth: 20,
     };
 
     // set this for callbacks
     this.handleSetNumberPlayers = this.handleSetNumberPlayers.bind(this);
+    this.handleSetDefaultHealth = this.handleSetDefaultHealth.bind(this);
   }
   render() {
     let {showInitialState} = this.state;
     if (showInitialState) {
-      return <MTGSetup onSetNumberPlayers={this.handleSetNumberPlayers} />;
+      return <MTGSetup
+        onSetNumberPlayers={this.handleSetNumberPlayers}
+        onSetDefaultHealth={this.handleSetDefaultHealth}
+        defaultHealth={this.state.defaultHealth}
+      />;
     } else {
-      return <MTGLayout numberPlayers={this.state.numberPlayers} reset={() => this.handleReset()}/>;
+      return <MTGLayout
+        numberPlayers={this.state.numberPlayers}
+        reset={() => this.handleReset()}
+        defaultHealth={this.state.defaultHealth}
+      />;
     }
   }
 
@@ -45,12 +55,21 @@ class MTG extends Component {
       showInitialState: false,
     });
   }
+
+  handleSetDefaultHealth(health) {
+    console.log(health)
+    this.setState({
+      defaultHealth: health
+    });
+  }
 }
 
 
 /**
  * props: {
-   onSetNumberPlayers: func - callback
+   onSetNumberPlayers: func - callback to set the number of players and start
+   onSetDefaultHealth: func - callback to set the starting health
+   defaultHealth: number - the starting health
   }
  */
 class MTGSetup extends Component {
@@ -59,6 +78,9 @@ class MTGSetup extends Component {
   }
 
   render () {
+    console.log(this.props)
+    let style20 = this.props.defaultHealth === 20 ? styles.buttonSolid : styles.button;
+    let style40 = this.props.defaultHealth === 40 ? styles.buttonSolid : styles.button;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>How many players?</Text>
@@ -71,16 +93,28 @@ class MTGSetup extends Component {
         <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(4)}>
           <Text style={styles.button}>four</Text>
         </TouchableOpacity>
+        <Text style={styles.welcome}>Default health?</Text>
+        <TouchableOpacity onPress={() => this.props.onSetDefaultHealth(20)}>
+          <Text style={style20}>20</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.onSetDefaultHealth(40)}>
+          <Text style={style40}>40</Text>
+        </TouchableOpacity>
       </View>
     )
   }
 }
-MTGSetup.propTypes = {onSetNumberPlayers: React.PropTypes.func};
+MTGSetup.propTypes = {
+  onSetNumberPlayers: React.PropTypes.func,
+  onSetDefaultHealth: React.PropTypes.func,
+  defaultHealth: React.PropTypes.number,
+};
 
 /**
  * props: {
    numberPlayers: number - the number of players [2-4]
    reset: func - callback to reset the game
+   defaultHealth: number - health to start with
   }
  */
 class MTGLayout extends Component {
@@ -150,6 +184,18 @@ const styles = StyleSheet.create({
     color: '#34B8F1',
     padding: 15,
     margin: 15,
+  },
+  buttonSolid: {
+    fontSize: 25,
+    borderColor: 'white',
+    borderWidth: 3,
+    borderRadius: 5,
+    textAlign: 'center',
+    color: 'white',
+    backgroundColor: '#34B8F1',
+    padding: 15,
+    margin: 15,
+    overflow: 'hidden',
   },
   touchButton: {
     borderColor: '#34B8F1',
