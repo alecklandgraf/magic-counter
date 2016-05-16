@@ -159,12 +159,12 @@ class MTGLayout extends Component {
     return players.map((p) => {
       return (
         <View key={p.number} style={styles.player}>
-          <TouchableOpacity onPress={() => this.subHealth(p.number)}>
-            <Text style={styles.subtractIcon}>-</Text>
+          <TouchableOpacity onPress={() => this.subHealth(p.number)} style={styles.boxLeft}>
+            <Text style={styles.icon}>-</Text>
           </TouchableOpacity>
           <Text style={styles.buttonText}>Player {p.number}: {p.health}</Text>
-          <TouchableOpacity onPress={() => this.addHealth(p.number)}>
-            <Text style={styles.addIcon}>+</Text>
+          <TouchableOpacity onPress={() => this.addHealth(p.number)} style={styles.boxRight}>
+            <Text style={styles.icon}>+</Text>
           </TouchableOpacity>
         </View>
       );
@@ -264,15 +264,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 25,
   },
-  subtractIcon: {
+  icon: {
     color: '#34B8F1',
     fontSize: 25,
-    right: 75
   },
-  addIcon: {
+  icon: {
     color: '#34B8F1',
     fontSize: 25,
-    left: 75
+  },
+  boxLeft: {
+    right: 70,
+    paddingLeft: 7,
+    paddingRight: 7,
+  },
+  boxRight: {
+    left: 70,
+    paddingRight: 7,
+    paddingLeft: 7,
   }
 });
 
