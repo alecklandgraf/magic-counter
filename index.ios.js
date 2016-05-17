@@ -12,6 +12,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import appStyles from './styles';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class MTG extends Component {
   constructor(props) {
@@ -84,22 +86,46 @@ class MTGSetup extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>How many players?</Text>
-        <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(2)}>
-          <Text style={styles.button}>two</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(3)}>
-          <Text style={styles.button}>three</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(4)}>
-          <Text style={styles.button}>four</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(2)} style={{flex: 1}}>
+            <Text style={styles.button}>
+              <FontAwesome name="user" size={20}/>
+              <Text> </Text>
+              <FontAwesome name="user" size={20}/>
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(3)} style={{flex: 1}}>
+            <Text style={styles.button}>
+              <FontAwesome name="user" size={20}/>
+              <Text> </Text>
+              <FontAwesome name="user" size={20}/>
+              <Text> </Text>
+              <FontAwesome name="user" size={20}/>
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.onSetNumberPlayers(4)} style={{flex: 1}}>
+            <Text style={styles.button}>
+              <FontAwesome name="user" size={20}/>
+              <Text> </Text>
+              <FontAwesome name="user" size={20}/>
+              <Text> </Text>
+              <FontAwesome name="user" size={20}/>
+              <Text> </Text>
+              <FontAwesome name="user" size={20}/>
+            </Text>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.welcome}>Default health?</Text>
-        <TouchableOpacity onPress={() => this.props.onSetDefaultHealth(20)}>
-          <Text style={style20}>20</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.onSetDefaultHealth(40)}>
-          <Text style={style40}>40</Text>
-        </TouchableOpacity>
+
+        <View style={appStyles.healthQuestion}>
+          <TouchableOpacity onPress={() => this.props.onSetDefaultHealth(20)}>
+            <Text style={style20}>20</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.onSetDefaultHealth(40)}>
+            <Text style={style40}>40</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     )
   }
@@ -218,6 +244,8 @@ const styles = StyleSheet.create({
     color: '#34B8F1',
     padding: 15,
     margin: 15,
+    flex: 1,
+    textAlign: 'center'
   },
   buttonSolid: {
     fontSize: 25,
