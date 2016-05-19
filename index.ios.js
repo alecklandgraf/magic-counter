@@ -277,15 +277,16 @@ const styles = StyleSheet.create({
     borderColor: '#34B8F1',
     borderWidth: 3,
     borderRadius: 5,
-    padding: 15,
+    padding: 0,
     margin: 15,
     flexDirection: 'row',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   buttonText: {
     color: '#34B8F1',
     textAlign: 'center',
     fontSize: 25,
+    paddingTop: 7,
   },
   buttonTextRed: {
     color: '#A94442',
@@ -301,14 +302,18 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   boxLeft: {
-    right: 70,
-    paddingLeft: 7,
-    paddingRight: 7,
+    paddingLeft: 50,
+    paddingRight: 50,
+    paddingTop: 7,
+    paddingBottom: 7,
+    flex: 1,
   },
   boxRight: {
-    left: 70,
-    paddingRight: 7,
-    paddingLeft: 7,
+    paddingRight: 50,
+    paddingLeft: 50,
+    paddingTop: 7,
+    paddingBottom: 7,
+    flex: 1
   }
 });
 
