@@ -12,6 +12,13 @@ class Rando extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      playerOneSelected: true,
+      playerTwoSelected: false,
+      playerThreeSelected: false,
+      playerFourSelected: false,
+
+    };
   }
 
   render () {
@@ -27,11 +34,11 @@ class Rando extends Component {
         </View>
         <View style={styles.content}>
           <View style={styles.row}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>Matt</Text>
+            <TouchableOpacity style={styles.selectedButton}>
+              <Text style={styles.selectedPlayerText}>{this.props.playerOneName}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>Collin</Text>
+              <Text style={styles.playerText}>{this.props.playerTwoName}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -41,10 +48,10 @@ class Rando extends Component {
           </View>
           <View style={styles.row}>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>Tom</Text>
+              <Text style={styles.playerText}>{this.props.playerThreeName}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>Aleck</Text>
+              <Text style={styles.playerText}>{this.props.playerFourName}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -52,6 +59,12 @@ class Rando extends Component {
     )
   }
 }
+Rando.defaultProps = {
+  playerOneName: 'Matt',
+  playerTwoName: 'Collin',
+  playerThreeName: 'Tom',
+  playerFourName: 'Aleck',
+};
 
 // dream in color colourlovers.com pallet http://www.colourlovers.com/palette/871636/A_Dream_in_Color
 const styles = StyleSheet.create({
@@ -85,6 +98,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
   },
+  selectedPlayerText: {
+    color: '#fff',
+    width: 150,
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
   goText: {
     color: '#fff',
     width: 150,
@@ -108,6 +129,12 @@ const styles = StyleSheet.create({
     borderColor: '#88C425',
     justifyContent: 'center',
     margin: 10,
+  },
+  selectedButton: {
+    borderRadius: 5,
+    justifyContent: 'center',
+    margin: 10,
+    backgroundColor: '#1B676B',
   },
   goButton: {
     borderRadius: 5,
