@@ -111,9 +111,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   goButton: {
-    borderWidth: 2,
     borderRadius: 5,
-    borderColor: '#1B676B',
     justifyContent: 'center',
     margin: 10,
     backgroundColor: '#88C425',
