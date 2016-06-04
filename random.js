@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import sample from 'lodash/sample';
 
 
 class Rando extends Component {
@@ -68,10 +69,26 @@ class Rando extends Component {
   }
 
   selectRandomPlayer() {
-    this.setState({
-      randomlyPickedPlayer: 1,
-      playerOneSelected: true,
-    });
+    let playersSelected = [];
+    if (this.state.playerOneSelected) {
+      playersSelected.push(1);
+    }
+    if (this.state.playerTwoSelected) {
+      playersSelected.push(2);
+    }
+    if (this.state.playerThreeSelected) {
+      playersSelected.push(3);
+    }
+    if (this.state.playerFourSelected) {
+      playersSelected.push(4);
+    }
+    if (playersSelected.length > 0) {
+      let player = sample(playersSelected);
+      this.setState({
+        randomlyPickedPlayer: player,
+        playerOneSelected: true,
+      });
+    }
   }
 }
 Rando.defaultProps = {
