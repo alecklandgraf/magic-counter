@@ -26,18 +26,25 @@ class Rando extends Component {
           <Text style={styles.toolbarButton}></Text>
         </View>
         <View style={styles.content}>
-          <View >
+          <View style={styles.row}>
             <TouchableOpacity>
               <Text style={styles.playerText}>Matt</Text>
             </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.playerText}>Collin</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <TouchableOpacity>
+              <Text style={styles.playerText}>Go!</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
             <TouchableOpacity>
               <Text style={styles.playerText}>Tom</Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text style={styles.playerText}>Aleck</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.playerText}>Collin</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -73,9 +80,16 @@ const styles = StyleSheet.create({
   },
   playerText: {
     color: '#1B676B',
+    width: 50,
+    textAlign: 'center',
+    flex: 1
   },
   mainContainer: {
     flex: 1
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 
