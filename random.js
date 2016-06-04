@@ -27,23 +27,23 @@ class Rando extends Component {
         </View>
         <View style={styles.content}>
           <View style={styles.row}>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
               <Text style={styles.playerText}>Matt</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
               <Text style={styles.playerText}>Collin</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <TouchableOpacity>
-              <Text style={styles.playerText}>Go!</Text>
+            <TouchableOpacity style={styles.goButton}>
+              <Text style={styles.goText}>Go!</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
               <Text style={styles.playerText}>Tom</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
               <Text style={styles.playerText}>Aleck</Text>
             </TouchableOpacity>
           </View>
@@ -74,22 +74,49 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 30,
     alignItems: 'center',
     backgroundColor: '#EAFDE6',
   },
   playerText: {
     color: '#1B676B',
-    width: 50,
+    width: 150,
     textAlign: 'center',
-    flex: 1
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  goText: {
+    color: '#fff',
+    width: 150,
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 35,
   },
   mainContainer: {
     flex: 1
   },
   row: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 10,
+    margin: 20,
+  },
+  button: {
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: '#88C425',
+    justifyContent: 'center',
+    margin: 10,
+  },
+  goButton: {
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: '#1B676B',
+    justifyContent: 'center',
+    margin: 10,
+    backgroundColor: '#88C425',
   }
 });
 
