@@ -86,7 +86,6 @@ class Rando extends Component {
       let player = sample(playersSelected);
       this.setState({
         randomlyPickedPlayer: player,
-        playerOneSelected: true,
       });
     }
   }
