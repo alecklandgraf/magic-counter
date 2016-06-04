@@ -17,11 +17,18 @@ class Rando extends Component {
       playerTwoSelected: false,
       playerThreeSelected: false,
       playerFourSelected: false,
-
     };
   }
 
   render () {
+    const playerOneButtonStyle = this.state.playerOneSelected ? styles.selectedButton : styles.button;
+    const playerOneTextStyle = this.state.playerOneSelected ? styles.selectedPlayerText : styles.playerText;
+    const playerTwoButtonStyle = this.state.playerTwoSelected ? styles.selectedButton : styles.button;
+    const playerTwoTextStyle = this.state.playerTwoSelected ? styles.selectedPlayerText : styles.playerText;
+    const playerThreeButtonStyle = this.state.playerThreeSelected ? styles.selectedButton : styles.button;
+    const playerThreeTextStyle = this.state.playerThreeSelected ? styles.selectedPlayerText : styles.playerText;
+    const playerFourButtonStyle = this.state.playerFourSelected ? styles.selectedButton : styles.button;
+    const playerFourTextStyle = this.state.playerFourSelected ? styles.selectedPlayerText : styles.playerText;
 
     return (
       <View style={styles.mainContainer}>
@@ -34,11 +41,11 @@ class Rando extends Component {
         </View>
         <View style={styles.content}>
           <View style={styles.row}>
-            <TouchableOpacity style={styles.selectedButton}>
-              <Text style={styles.selectedPlayerText}>{this.props.playerOneName}</Text>
+            <TouchableOpacity style={playerOneButtonStyle} onPress={()=>this.setState({playerOneSelected: !this.state.playerOneSelected})}>
+              <Text style={playerOneTextStyle}>{this.props.playerOneName}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>{this.props.playerTwoName}</Text>
+            <TouchableOpacity style={playerTwoButtonStyle} onPress={()=>this.setState({playerTwoSelected: !this.state.playerTwoSelected})}>
+              <Text style={playerTwoTextStyle}>{this.props.playerTwoName}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -47,11 +54,11 @@ class Rando extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>{this.props.playerThreeName}</Text>
+            <TouchableOpacity style={playerThreeButtonStyle} onPress={()=>this.setState({playerThreeSelected: !this.state.playerThreeSelected})}>
+              <Text style={playerThreeTextStyle}>{this.props.playerThreeName}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.playerText}>{this.props.playerFourName}</Text>
+            <TouchableOpacity style={playerFourButtonStyle} onPress={()=>this.setState({playerFourSelected: !this.state.playerFourSelected})}>
+              <Text style={playerFourTextStyle}>{this.props.playerFourName}</Text>
             </TouchableOpacity>
           </View>
         </View>
