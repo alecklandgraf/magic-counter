@@ -13,6 +13,7 @@ import {
   View
 } from 'react-native';
 import appStyles from './styles';
+import Rando from './random';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class MTG extends Component {
@@ -23,6 +24,7 @@ class MTG extends Component {
       numberPlayers: 2,
       showInitialState: true,
       defaultHealth: 20,
+      showRando: false,
     };
 
     // set this for callbacks
@@ -30,13 +32,16 @@ class MTG extends Component {
     this.handleSetDefaultHealth = this.handleSetDefaultHealth.bind(this);
   }
   render() {
-    let {showInitialState} = this.state;
+    let {showInitialState, showRando} = this.state;
+    return <Rando />;
     if (showInitialState) {
       return <MTGSetup
         onSetNumberPlayers={this.handleSetNumberPlayers}
         onSetDefaultHealth={this.handleSetDefaultHealth}
         defaultHealth={this.state.defaultHealth}
       />;
+    } else if (showRando) {
+      return <Rando />;
     } else {
       return <MTGLayout
         numberPlayers={this.state.numberPlayers}
@@ -48,6 +53,10 @@ class MTG extends Component {
 
   handleReset() {
     this.setState({showInitialState: true});
+  }
+
+  handleShowRando() {
+    this.setState({showRando: true});
   }
 
   handleSetNumberPlayers(numberPlayers) {
@@ -114,6 +123,7 @@ class MTGSetup extends Component {
               <FontAwesome name="user" size={20}/>
             </Text>
           </TouchableOpacity>
+
         </View>
         <Text style={styles.welcome}>Default health?</Text>
 
@@ -174,6 +184,8 @@ class MTGLayout extends Component {
     )
   }
 
+
+
   playerLayout() {
     let players = [];
     for (var playerNumber in this.state.players) {
@@ -197,6 +209,10 @@ class MTGLayout extends Component {
     });
   }
 
+  randomizer (){
+     return Math.random() * 6 + 1;
+  }
+
   addHealth(playerNumber) {
     this.setState((previousState, currentProps) => {
       previousState.players[playerNumber] += 1;
@@ -216,6 +232,7 @@ MTGLayout.propTypes = {
   defaultHealth: React.PropTypes.number,
 };
 MTGLayout.defaultProps = { defaultHealth: 40 };
+
 
 
 const styles = StyleSheet.create({
