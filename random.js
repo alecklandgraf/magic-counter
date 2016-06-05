@@ -19,6 +19,7 @@ class Rando extends Component {
       playerThreeSelected: false,
       playerFourSelected: false,
       randomlyPickedPlayer: false,
+      selectionInProgress: false,
     };
   }
 
@@ -31,6 +32,7 @@ class Rando extends Component {
     const playerThreeTextStyle = this.state.playerThreeSelected ? styles.selectedPlayerText : styles.playerText;
     const playerFourButtonStyle = this.state.randomlyPickedPlayer === 4 ? styles.randomlyPickedButton : this.state.playerFourSelected ? styles.selectedButton : styles.button;
     const playerFourTextStyle = this.state.playerFourSelected ? styles.selectedPlayerText : styles.playerText;
+    const goText = this.state.selectionInProgress ? '...' : 'Go!';
 
     return (
       <View style={styles.mainContainer}>
@@ -55,7 +57,7 @@ class Rando extends Component {
           </View>
           <View style={styles.row}>
             <TouchableOpacity style={styles.goButton} onPress={() => this.selectRandomPlayer()}>
-              <Text style={styles.goText}>Go!</Text>
+              <Text style={styles.goText}>{goText}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -85,11 +87,45 @@ class Rando extends Component {
     if (this.state.playerFourSelected) {
       playersSelected.push(4);
     }
-    if (playersSelected.length > 0) {
-      let player = sample(playersSelected);
-      this.setState({
-        randomlyPickedPlayer: player,
-      });
+    if (playersSelected.length > 0 && !this.state.selectionInProgress) {
+      this.setState({selectionInProgress: true});
+      setTimeout(() => {
+        let player = sample(playersSelected);
+        this.setState({
+          randomlyPickedPlayer: player,
+        });
+      }, 50);
+      setTimeout(() => {
+        let player = sample(playersSelected);
+        this.setState({
+          randomlyPickedPlayer: player,
+        });
+      }, 250);
+      setTimeout(() => {
+        let player = sample(playersSelected);
+        this.setState({
+          randomlyPickedPlayer: player,
+        });
+      }, 500);
+      setTimeout(() => {
+        let player = sample(playersSelected);
+        this.setState({
+          randomlyPickedPlayer: player,
+        });
+      }, 750);
+      setTimeout(() => {
+        let player = sample(playersSelected);
+        this.setState({
+          randomlyPickedPlayer: player,
+        });
+      }, 1000);
+      setTimeout(() => {
+        let player = sample(playersSelected);
+        this.setState({
+          randomlyPickedPlayer: player,
+          selectionInProgress: false,
+        });
+      }, 1250);
     }
   }
 }
