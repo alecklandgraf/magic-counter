@@ -38,10 +38,13 @@ class Rando extends Component {
           <TouchableOpacity>
             <Text style={styles.toolbarButton}>Back</Text>
           </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>Rando Time</Text>
+          <Text style={styles.toolbarTitle}>Random Picker</Text>
           <Text style={styles.toolbarButton}></Text>
         </View>
         <View style={styles.content}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Feeling lucky? Select players to ramdomly target and press "Go!" </Text>
+          </View>
           <View style={styles.row}>
             <TouchableOpacity style={playerOneButtonStyle} onPress={()=>this.setState({playerOneSelected: !this.state.playerOneSelected, randomlyPickedPlayer: false})}>
               <Text style={playerOneTextStyle}>{this.props.playerOneName}</Text>
@@ -121,6 +124,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#EAFDE6',
   },
+  header: {
+    padding: 10,
+
+  },
+  headerText: {
+    color: '#1B676B',
+    fontSize: 20,
+  },
   playerText: {
     color: '#1B676B',
     width: 150,
@@ -151,7 +162,7 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
-    padding: 10,
+    padding: 5,
     margin: 20,
   },
   button: {
