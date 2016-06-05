@@ -163,15 +163,19 @@ const styles = StyleSheet.create({
   },
   selectedButton: {
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#EAFDE6',
     justifyContent: 'center',
     margin: 10,
     backgroundColor: '#1B676B',
   },
   randomlyPickedButton: {
     borderRadius: 5,
+    borderWidth: 2,
     justifyContent: 'center',
     margin: 10,
     backgroundColor: '#F64E15',
+    borderColor: '#EAFDE6',
   },
   goButton: {
     borderRadius: 5,
