@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import appStyles from './styles';
 import Rando from './random';
+import Clock from './clock';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class MTG extends Component {
@@ -33,7 +34,9 @@ class MTG extends Component {
   }
   render() {
     let {showInitialState, showRando} = this.state;
-    return <Rando />;
+
+    return <Clock />;
+
     if (showInitialState) {
       return <MTGSetup
         onSetNumberPlayers={this.handleSetNumberPlayers}
