@@ -35,7 +35,7 @@ class MTG extends Component {
   render() {
     let {showInitialState, showRando} = this.state;
 
-    return <Clock />;
+    return <Rando />;
 
     if (showInitialState) {
       return <MTGSetup
